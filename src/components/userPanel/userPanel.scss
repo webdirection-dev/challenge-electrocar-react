@@ -1,0 +1,19 @@
+@import "../../sass";
+
+.user {
+    display: flex;
+    &__txt {
+        @include regular15();
+        margin: 0 11px;
+    }
+    &__arrow {
+        display: inline-flex;
+        width: 8px;
+        height: 8px;
+        border-top: 1px solid black;
+        border-left: 1px solid black;
+        transform: rotate(225deg);
+        cursor: pointer;
+        margin-top: 1.5px;
+    }
+}

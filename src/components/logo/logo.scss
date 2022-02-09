@@ -1,0 +1,10 @@
+@import "../../sass";
+
+.logo {
+    @include link();
+    &__txt {
+        @include medium12();
+        color: $mainColor;
+        margin-top: 8px;
+    }
+}

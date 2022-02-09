@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+// FONTS
+$mainFont: 'Inter', sans-serif;
+
+// COLOR
+
+$mainColor: #232323;
+
+$white: #ffffff;
+$blue: #0075F6;
+
+$cyan: #39d9d7;
+$red: #ff2e55;
+$pink: #d85c8e;
+$orange: #ed712c;
+$gold: #f3c823;
+$yellow: #f3dd00;
+$green1: #63cd23;
+$green2: #176117;
+$green3: #28cd41;
+
+$mainBackground: #F7FAFF;
+$backgroundDark: #041528;
+
+
+$opacity: rgba(51, 51, 51, 0.5);
+
+// SHADOW
+
+// screens
+$phoneVertical: 'min-width: 320px';
+$phone: 'min-width: 576px';
+$tablet: 'min-width: 768px';
+$laptop: 'min-width: 992px';
+$desktop: 'min-width: 1025px';
+$projector: 'min-width: 1440px';
+
+// breakpoints
+// $phoneVertical: 320px
+// $phone: 576px
+// $tablet: 768px
+// $laptop: 992px
+// $desktop: 1024px
+// $projector: 1024px
