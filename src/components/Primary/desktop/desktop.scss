@@ -1,0 +1,13 @@
+@import '../../../sass';
+
+.desktop {
+    background-color: red;
+    width: 100%;
+    height: 100px;
+    &__welcome {
+        @include heading2();
+        display: flex;
+        justify-content: center;
+        margin-top: 27rem;
+    }
+}

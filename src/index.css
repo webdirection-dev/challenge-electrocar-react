@@ -1,2 +1,6 @@
+.hidden {
+    display: none;
+}
+
 :focus {outline:none !important;}
 ::-moz-focus-inner {border:0;}

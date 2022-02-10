@@ -1,14 +1,12 @@
 import Header from "../header";
+import Desktop from "./desktop";
 import './primary.scss'
 
 const Primary = () => {
-    // const {
-    //     isWidthApp = null
-    // } = props
-
     return(
         <div className="primary">
             <Header />
+            <Desktop />
         </div>
     )
 }
