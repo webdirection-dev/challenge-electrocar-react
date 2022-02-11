@@ -2,5 +2,9 @@
     display: none;
 }
 
+.odd {
+    background-color: #F7FAFF !important;
+}
+
 :focus {outline:none !important;}
 ::-moz-focus-inner {border:0;}

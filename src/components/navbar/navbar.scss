@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: $backgroundDark;
+    box-shadow: 0px 4px 47px rgba(0, 0, 0, 0.05);
     flex-shrink: 0;
     &__hidden {
         width: 6.4rem;

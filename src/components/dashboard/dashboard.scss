@@ -1,0 +1,34 @@
+@import "../../sass";
+
+.dashboard {
+    width: 100%;
+    max-height: calc(100vh - 64px - 164px - 64px);
+    overflow-y: scroll;
+    &__head {
+        @include medium13();
+        display: flex;
+        align-items: center;
+        height: 56px;
+        background-color: $white;
+        position: fixed;
+        width: calc(100% - 24px - 32px - 241px);
+    }
+    &__item {
+        @include regular13();
+        display: flex;
+        align-items: center;
+        height: 56px;
+        background-color: $white;
+    }
+    &__local {
+        display: flex;
+        width: 584px;
+    }
+    &__id {
+        width: 93px;
+        padding-left: 24px;
+    }
+    &__list {
+        margin-top: 56px;
+    }
+}

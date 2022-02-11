@@ -1,12 +1,12 @@
 import Header from "../header";
-import Desktop from "./desktop";
+import Charging from "./charging";
 import './primary.scss'
 
 const Primary = () => {
     return(
         <div className="primary">
             <Header />
-            <Desktop />
+            <Charging />
         </div>
     )
 }

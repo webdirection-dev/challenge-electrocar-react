@@ -8,7 +8,7 @@ const chargerSlice = createSlice({
         locations: [],
 
         isToggleNavbar: true,
-        isToggleDesktop: false
+        isToggleDesktop: true
     },
 
     reducers: {
