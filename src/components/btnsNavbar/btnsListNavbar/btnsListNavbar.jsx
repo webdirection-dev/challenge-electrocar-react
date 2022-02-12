@@ -1,4 +1,4 @@
-import DataNavbar from "../../db/navbarDb";
+import DataNavbar from "../../../db/navbarDb";
 import BtnItemNavbar from "../btnItemNavbar";
 
 import './btnsListNavbar.scss'

@@ -3,6 +3,6 @@ import chargerReducer from './chargerSlice';
 
 export default configureStore({
     reducer: {
-        chargerReducer
+        chargerReducer: chargerReducer
     }
 });

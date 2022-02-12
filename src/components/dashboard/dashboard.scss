@@ -3,6 +3,7 @@
 .dashboard {
     width: 100%;
     max-height: calc(100vh - 64px - 164px - 64px);
+    //max-height: calc(100vh - 64px - 164px - 64px + 32px);
     overflow-y: scroll;
     &__head {
         @include medium13();
@@ -10,8 +11,8 @@
         align-items: center;
         height: 56px;
         background-color: $white;
-        position: fixed;
-        width: calc(100% - 24px - 32px - 241px);
+        //position: fixed;
+        //width: calc(100% - 24px - 32px - 241px);
     }
     &__item {
         @include regular13();
@@ -19,6 +20,9 @@
         align-items: center;
         height: 56px;
         background-color: $white;
+        &:hover {
+            background-color: #E7F2FE !important;
+        }
     }
     &__local {
         display: flex;
@@ -29,6 +33,6 @@
         padding-left: 24px;
     }
     &__list {
-        margin-top: 56px;
+        //margin-top: 56px;
     }
 }
