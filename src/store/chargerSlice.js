@@ -99,9 +99,9 @@ export const addNewForm = createAsyncThunk(
 const chargerSlice = createSlice({
     name: 'charger',
     initialState: {
-        sessionsData: [],
-        pointsData: [],
-        statusesData: [],
+        sessionsData: {payload:[]},
+        pointsData: {payload:[]},
+        statusesData: {payload:[]},
 
         isToggleNavbar: true,
         isToggleDesktop: true,

@@ -1,3 +1,5 @@
+import Status from "../status";
+
 const DashboardItem = (props) => {
     const {
         id,
@@ -17,8 +19,13 @@ const DashboardItem = (props) => {
     })
 
     statuses.payload.forEach(item => {
-        if (item.id === state_id) status = item.name
+        if (item.id === state_id && (item.name === 'Starting' || item.name === 'Charging')) status = 'Идёт зарядка'
+        if (item.id === state_id && (item.name === 'Finishing' || item.name === 'Completed')) status = 'Завершена'
     })
+
+    // statuses.payload.forEach(item => {
+    //     if (item.id === state_id) status = item.name
+    // })
 
     let classesDashboardItem = 'dashboard__item'
     if (index % 2 === 0) classesDashboardItem = classesDashboardItem + ' odd'
@@ -30,7 +37,7 @@ const DashboardItem = (props) => {
                 <h2 className="dashboard__location">{name}</h2>
             </div>
 
-            <h2>{status}</h2>
+            <Status status={status}/>
         </div>
     )
 }

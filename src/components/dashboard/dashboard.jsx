@@ -23,10 +23,10 @@ const Dashboard = () => {
         <>
             {responseStatus === 'loading' && <h2>Загрузка...</h2>}
 
-            {(responseError && sessionsData.length === 0) && <h2>Произошла ошибка: {responseError}</h2>}
+            {(responseError && sessionsData.payload.length === 0) && <h2>Произошла ошибка: {responseError}</h2>}
 
             {/*Заглушка при ошибке Cross-Origin Request*/}
-            {sessionsData.length === 0 &&
+            {sessionsData.payload.length === 0 &&
                 <div className="dashboard">
                     <div className="dashboard__head">
                         <div className="dashboard__local">
@@ -56,7 +56,7 @@ const Dashboard = () => {
             }
 
             {/*Реальные данные с сервера*/}
-            {sessionsData.length > 0 &&
+            {sessionsData.payload.length > 0 &&
                 <div className="dashboard">
                     <div className="dashboard__head">
                         <div className="dashboard__local">

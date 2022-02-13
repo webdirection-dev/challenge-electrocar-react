@@ -1,8 +1,11 @@
 @import '../../sass';
 
 .select {
-        display: flex;
-    &__item {
+    display: flex;
+    &__location {
+        position: relative;
+    }
+    &__header {
         @include regular15();
         display: flex;
         justify-content: space-between;
@@ -34,5 +37,80 @@
         transform: rotate(225deg);
         cursor: pointer;
         //margin-top: 1.5px;
+        &-show {
+            transform: rotate(45deg) !important;
+        }
+    }
+    &__actions {
+        position: absolute;
+        left: 0;
+        bottom: -251px;
+        width: 443px;
+        height: 252px;
+        background-color: $white;
+        border: 1px solid #D2E5F9;
+        box-sizing: border-box;
+        z-index: 1000;
+    }
+    &__search {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 411px;
+        height: 40px;
+        border: 1px solid #D2E5F9;
+        box-sizing: border-box;
+        border-radius: 2px;
+        margin: 16px;
+        &-border-filled {
+            border-color: #88B1DD;
+        }
+        &-border-focus {
+            border-color: #0075F6;
+        }
+        &-border-invalid {
+            border-color: #EB5757;
+        }
+    }
+    &__icon {
+        margin: 0 11px 0 14.5px;
+    }
+    &__input {
+        @include regular15();
+        width: 348px;
+        border: none;
+        &::placeholder {
+            color: #88B1DD;
+            border: none;
+            outline: none;
+        }
+    }
+    &__error {
+        @include medium12();
+        position: absolute;
+        left: 0;
+        bottom: -16px;
+        color: #EB5757;
+    }
+    &__list {
+        max-height: 180px;
+        overflow-y: scroll;
+    }
+    &__location-choice {
+        @include regular15();
+        display: flex;
+        align-items: center;
+        height: 36px;
+        padding-left: 21px;
+        cursor: pointer;
+        &:hover {
+            background-color: #E7F2FE;
+        }
+    }
+    &__name {
+        margin-left: 8px;
+        &-checked {
+            color: #0075F6;
+        }
     }
 }

@@ -1,0 +1,13 @@
+@import "../../../sass";
+
+.status {
+    @include medium12();
+    display: flex;
+    justify-content: center;
+    //align-items: center;
+    width: 102px;
+    height: 12px;
+    background: $gold;
+    border-radius: 15px;
+    padding: 3px 0 5px;
+}

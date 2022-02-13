@@ -1,9 +1,14 @@
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 .odd {
     background-color: #F7FAFF !important;
+}
+
+.bgBlue {
+    background-color: #0075F6 !important;
+    color: white !important;
 }
 
 :focus {outline:none !important;}
