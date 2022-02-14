@@ -1,17 +1,24 @@
 import {useState} from "react";
+import {useSelector} from "react-redux";
+
 import SelectList from "./selectList";
 
 import lens from '../../icons/lens.svg'
 import './select.scss'
 
 const Select = () => {
+    const counterPointsSelectStatus = useSelector(state => state.chargerReducer.counterPointsSelectStatus)
+
     const [isToggleSelectList, setToggleSelectList] = useState(false)
     const [isFocus, setFocus] = useState(false)
     const [isInput, setInput] = useState('')
     const [isInvalid, setInvalid] = useState(false)
 
     const handlerChangeInput = (event) => {
-        const {name, value} = event.target;
+        event.preventDefault()
+        const target = event.target
+
+        const {name, value} = target;
         // let valueToState = value;
         // if (name === 'email') valueToState = value.toLowerCase();
         // this.setState({
@@ -35,7 +42,7 @@ const Select = () => {
                 <div className="select__content">
                     <div className="select__name">Локация</div>
                     <div className="select__pipe">|</div>
-                    <div className="select__info"> Выбрано 0</div>
+                    <div className="select__info">Выбрано {counterPointsSelectStatus}</div>
                 </div>
 
                 <i
@@ -47,16 +54,21 @@ const Select = () => {
             <div className={classesToggleLocationList}>
                 <div className={classesSearch}>
                     <img className='select__icon' src={lens} alt="lens"/>
-                    <input
-                        type="text"
-                        name='location'
-                        placeholder='Search'
-                        className='select__input'
-                        onFocus={() => setFocus(true)}
-                        onBlur={() => setFocus(false)}
-                        value={isInput}
-                        onChange={handlerChangeInput}
-                    />
+                    <form
+                        action=""
+                        autoComplete='off'
+                    >
+                        <input
+                            type="search"
+                            name='locationSearch'
+                            placeholder='Search'
+                            className='select__input'
+                            onFocus={() => setFocus(true)}
+                            onBlur={() => setFocus(false)}
+                            value={isInput}
+                            onChange={handlerChangeInput}
+                        />
+                    </form>
 
                     {isInvalid && <p className='select__error'>Text about error</p>}
                 </div>

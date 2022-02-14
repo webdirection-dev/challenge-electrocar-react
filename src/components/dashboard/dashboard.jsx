@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import SessionsDb from "../../db/sessionsDb";
+// import SessionsDb from "../../db/sessionsDb";
 import PointsDb from "../../db/pointsDb";
 import StatesDb from "../../db/statesDb";
 
@@ -7,6 +7,8 @@ import './dashboard.scss'
 import DashboardItem from "./dashboardItem";
 
 const Dashboard = () => {
+    const {sessionsDbTest} = useSelector(state => state.chargerReducer)
+
     const {responseStatus, responseError, sessionsData} = useSelector(state => state.chargerReducer)
     // console.log(sessionsData)
     const {responseStatusPoints, responseErrorPoints, pointsData} = useSelector(state => state.chargerReducer)
@@ -39,7 +41,7 @@ const Dashboard = () => {
 
                     <div className="dashboard__list">
                         {
-                            SessionsDb.payload.map((item, index) => {
+                            sessionsDbTest.payload.map((item, index) => {
                                 return(
                                     <DashboardItem
                                         key={String(Math.random() * item.id)}

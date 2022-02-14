@@ -1,13 +1,24 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
+import PointsDb from "../db/pointsDb";
+// import StatesDb from "../db/statesDb";
+import SessionsDb from "../db/sessionsDb";
 
 // const _path = 'https://jsonplaceholder.typicode.com/todos'
 const _path = '???https://test-api.electrocars.tech/'
+
+export const transformLocalDb = (data) => {
+    return  {
+        payload: data.payload.map(item => {
+            return {...item, selectStatus: false}
+        })
+    }
+}
 
 export const fetchSessions = createAsyncThunk(
     'chargerReducer/fetchSessions',
     async function(_, {rejectWithValue}) {
         try {
-            const response = await fetch( `${_path}states`, {
+            const response = await fetch( `${_path}sessions`, {
                 headers: {
                     // 'Content-Type': 'application/json;charset=utf-8',
                     // 'Accept': '*/*',
@@ -117,20 +128,78 @@ const chargerSlice = createSlice({
 
         responseStatusBackCall: null,
         responseErrorBackCall: null,
-    },
 
+        points_idsParams: [],
+        counterPointsSelectStatus: 0,
+
+        //тестовые данные
+        sessionsDbTest: SessionsDb,
+        pointsDbTest: transformLocalDb(PointsDb),
+    },
     reducers: {
-        toggleNavbar(state, action) {
+        toggleNavbar(state) {
             state.isToggleNavbar = !state.isToggleNavbar
         },
 
-        toggleDesktop(state, action) {
+        toggleDesktop(state) {
             state.isToggleDesktop = !state.isToggleDesktop
         },
 
-        showWarning(state, action) {
+        showWarning() {
             console.log('Handler missing!')
         },
+
+        pushPointsParam(state, action) {
+            const points_ids = action.payload.points_ids
+            let arr = [...state.points_idsParams]
+
+            if (!state.points_idsParams.includes(points_ids)) arr.push(points_ids)
+            else arr = state.points_idsParams.filter(item => item !== points_ids)
+
+            // console.log(arr)
+            state.points_idsParams = arr
+        },
+
+        transformLocalPoints(state, action) {
+            const arr = state.pointsDbTest.payload.map(item => {
+
+                if (item.id === action.payload.points_ids) {
+                    return {
+                        ...item,
+                        selectStatus: !item.selectStatus
+                    }
+                } else return item
+            })
+
+            let count = 0
+            arr.forEach(item => {
+                if (item.selectStatus) count += 1
+            })
+
+            state.counterPointsSelectStatus = count
+            state.pointsDbTest.payload = arr
+        },
+
+        filterLocalPoints(state) {
+            if (state.counterPointsSelectStatus > 0) {
+                const sessions = SessionsDb.payload
+
+                const filterArr = state.pointsDbTest.payload.filter(item => item.selectStatus)
+
+                const arrOut = []
+
+                for (let i = 0; i < sessions.length; i++) {
+                    for (let j = 0; j < filterArr.length; j++) {
+                        if (sessions[i].point_id === filterArr[j].id) {
+                            arrOut.push(sessions[i])
+                        }
+                    }
+                }
+
+                state.sessionsDbTest.payload = arrOut.sort((a, b) => a.point_id - b.point_id)
+            } else state.sessionsDbTest = SessionsDb
+
+        }
     },
 
     extraReducers: {
@@ -195,7 +264,10 @@ const chargerSlice = createSlice({
 export const {
     toggleNavbar,
     toggleDesktop,
-    showWarning
+    showWarning,
+    pushPointsParam,
+    transformLocalPoints,
+    filterLocalPoints,
 } = chargerSlice.actions
 
 export default chargerSlice.reducer
