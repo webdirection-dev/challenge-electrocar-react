@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import PointsDb from "../db/pointsDb";
-// import StatesDb from "../db/statesDb";
+import StatesDb from "../db/statesDb";
 import SessionsDb from "../db/sessionsDb";
 
 // const _path = 'https://jsonplaceholder.typicode.com/todos'
@@ -109,6 +109,7 @@ export const addNewForm = createAsyncThunk(
 
 const chargerSlice = createSlice({
     name: 'charger',
+
     initialState: {
         sessionsData: {payload:[]},
         pointsData: {payload:[]},
@@ -135,7 +136,9 @@ const chargerSlice = createSlice({
         //тестовые данные
         sessionsDbTest: SessionsDb,
         pointsDbTest: transformLocalDb(PointsDb),
+        statusDbTest: transformLocalDb(StatesDb),
     },
+
     reducers: {
         toggleNavbar(state) {
             state.isToggleNavbar = !state.isToggleNavbar
@@ -156,7 +159,6 @@ const chargerSlice = createSlice({
             if (!state.points_idsParams.includes(points_ids)) arr.push(points_ids)
             else arr = state.points_idsParams.filter(item => item !== points_ids)
 
-            // console.log(arr)
             state.points_idsParams = arr
         },
 

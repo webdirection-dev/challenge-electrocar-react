@@ -18,6 +18,9 @@
         border-radius: 3px;
         margin-right: 24px;
         padding: 0 16px;
+        &-status {
+            width: 362px;
+        }
     }
     &__content {
         display: flex;
@@ -51,6 +54,11 @@
         border: 1px solid #D2E5F9;
         box-sizing: border-box;
         z-index: 1000;
+        &-status {
+            width: 362px;
+            height: auto;
+            bottom: -145px;
+        }
     }
     &__search {
         position: relative;
@@ -112,5 +120,8 @@
         &-checked {
             color: #0075F6;
         }
+    }
+    &__info {
+        color: #88B1DD;
     }
 }

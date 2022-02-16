@@ -6,12 +6,11 @@ import {pushPointsParam, transformLocalPoints, filterLocalPoints} from "../../..
 import iconSelected from '../../../icons/iconSelected.svg'
 import iconUnselected from '../../../icons/iconUnselected.svg'
 
-const SelectItem = ({id, name, selectStatus}) => {
+const SelectStatusItem = ({id, name, selectStatus}) => {
     const points_idsParams = useSelector(state => state.chargerReducer.points_idsParams)
     const dispatch = useDispatch()
 
     const [isSearchParams, setSearchParams] = useSearchParams()
-    // const pointsQuery = isSearchParams.get('points_ids') || ''
 
     const handlerSelected = (event) => {
         event.preventDefault()
@@ -36,7 +35,7 @@ const SelectItem = ({id, name, selectStatus}) => {
 
     return(
         <div className="select__location-choice"
-            onClick={(event) => handlerSelected(event)}
+             onClick={(event) => handlerSelected(event)}
         >
             <img src={icon} alt={name}/>
             <h3 className={classesName}>{infoTxt}{name}</h3>
@@ -44,4 +43,4 @@ const SelectItem = ({id, name, selectStatus}) => {
     )
 }
 
-export default SelectItem
+export default SelectStatusItem

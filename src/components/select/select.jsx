@@ -36,13 +36,15 @@ const Select = () => {
     let classesToggleLocationList = isToggleSelectList ? 'select__actions' : 'select__actions hidden'
     let classesToggleBtns = !isToggleSelectList ? 'select__arrow' : 'select__arrow select__arrow-show'
 
+    let classesInfo = counterPointsSelectStatus > 0 ? '' : 'select__info'
+
     return(
         <div className='select__location'>
             <div className="select__header">
                 <div className="select__content">
                     <div className="select__name">Локация</div>
                     <div className="select__pipe">|</div>
-                    <div className="select__info">Выбрано {counterPointsSelectStatus}</div>
+                    <div className={classesInfo}>Выбрано {counterPointsSelectStatus}</div>
                 </div>
 
                 <i

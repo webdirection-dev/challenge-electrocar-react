@@ -1,14 +1,15 @@
 import {useSelector} from "react-redux";
-import SelectItem from "../selectItem";
+import SelectStatusItem from "../selectStatusItem";
 
-const SelectList = () => {
-    const pointsDbTest = useSelector(state => state.chargerReducer.pointsDbTest)
+const SelectStatusList = () => {
+    const statusDbTest = useSelector(state => state.chargerReducer.statusDbTest)
+
     return(
         <div className="select__list">
             {
-                pointsDbTest.payload.map(item => {
+                statusDbTest.payload.map(item => {
                     return(
-                        <SelectItem
+                        <SelectStatusItem
                             key={String(Math.random() * item.id)}
                             {...item}
                         />
@@ -19,4 +20,4 @@ const SelectList = () => {
     )
 }
 
-export default SelectList
+export default SelectStatusList

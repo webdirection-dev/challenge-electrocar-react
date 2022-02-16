@@ -2,6 +2,8 @@ import {useSelector} from "react-redux";
 import './charging.scss'
 
 import Select from "../../select";
+import SelectStatus from "../../selectStatus";
+
 import Dashboard from "../../dashboard";
 
 const Charging = () => {
@@ -20,7 +22,7 @@ const Charging = () => {
 
             <div className="select">
                 <Select />
-                <Select />
+                <SelectStatus />
             </div>
 
             <Dashboard />
