@@ -2,6 +2,7 @@ import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import PointsDb from "../db/pointsDb";
 import StatesDb from "../db/statesDb";
 import SessionsDb from "../db/sessionsDb";
+import store from "./index";
 
 // const _path = 'https://jsonplaceholder.typicode.com/todos'
 const _path = '???https://test-api.electrocars.tech/'
@@ -132,6 +133,11 @@ const chargerSlice = createSlice({
 
         points_idsParams: [],
         counterPointsSelectStatus: 0,
+        counterAllSelectPoints: 0,
+
+        status_idsParams: [],
+        counterStatusSelectStatus: 0,
+        counterAllSelectStatus: 0,
 
         //тестовые данные
         sessionsDbTest: SessionsDb,
@@ -162,6 +168,16 @@ const chargerSlice = createSlice({
             state.points_idsParams = arr
         },
 
+        pushStatusParam(state, action) {
+            const status_ids = action.payload.status_ids
+            let arr = [...state.status_idsParams]
+
+            if (!state.status_idsParams.includes(status_ids)) arr.push(status_ids)
+            else arr = state.status_idsParams.filter(item => item !== status_ids)
+
+            state.status_idsParams = arr
+        },
+
         transformLocalPoints(state, action) {
             const arr = state.pointsDbTest.payload.map(item => {
 
@@ -182,10 +198,56 @@ const chargerSlice = createSlice({
             state.pointsDbTest.payload = arr
         },
 
-        filterLocalPoints(state) {
-            if (state.counterPointsSelectStatus > 0) {
-                const sessions = SessionsDb.payload
+        transformLocalStatus(state, action) {
+            const arr = state.statusDbTest.payload.map(item => {
 
+                if (item.id === action.payload.status_ids) {
+                    return {
+                        ...item,
+                        selectStatus: !item.selectStatus
+                    }
+                } else return item
+            })
+
+            let count = 0
+            arr.forEach(item => {
+                if (item.selectStatus) count += 1
+            })
+
+            state.counterStatusSelectStatus = count
+            state.statusDbTest.payload = arr
+        },
+
+        // filterLocalPoints(state) {
+        //     if (state.counterPointsSelectStatus > 0) {
+        //         const sessions = SessionsDb.payload
+        //
+        //         const filterArr = state.pointsDbTest.payload.filter(item => item.selectStatus)
+        //
+        //         const arrOut = []
+        //
+        //         for (let i = 0; i < sessions.length; i++) {
+        //             for (let j = 0; j < filterArr.length; j++) {
+        //                 if (sessions[i].point_id === filterArr[j].id) {
+        //                     arrOut.push(sessions[i])
+        //                 }
+        //             }
+        //         }
+        //
+        //         state.sessionsDbTest.payload = arrOut.sort((a, b) => a.point_id - b.point_id)
+        //     } else state.sessionsDbTest = SessionsDb
+        // },
+
+        filterLocal(state) {
+            let sessions = SessionsDb.payload
+
+            if (state.counterPointsSelectStatus === 0 && state.counterStatusSelectStatus === 0) {
+                state.counterAllSelectStatus = 0
+                state.counterAllSelectPoints = 0
+                state.sessionsDbTest = SessionsDb
+            }
+
+            if (state.counterPointsSelectStatus > 0 && state.counterStatusSelectStatus === 0) {
                 const filterArr = state.pointsDbTest.payload.filter(item => item.selectStatus)
 
                 const arrOut = []
@@ -198,9 +260,61 @@ const chargerSlice = createSlice({
                     }
                 }
 
-                state.sessionsDbTest.payload = arrOut.sort((a, b) => a.point_id - b.point_id)
-            } else state.sessionsDbTest = SessionsDb
+                state.counterAllSelectPoints = arrOut.length
+                state.counterAllSelectStatus = 0
 
+                state.sessionsDbTest.payload = arrOut.sort((a, b) => a.point_id - b.point_id)
+            }
+
+            if (state.counterPointsSelectStatus === 0 && state.counterStatusSelectStatus > 0) {
+                const filterArr = state.statusDbTest.payload.filter(item => item.selectStatus)
+
+                const arrOut = []
+
+                for (let i = 0; i < sessions.length; i++) {
+                    for (let j = 0; j < filterArr.length; j++) {
+                        if (sessions[i].state_id === filterArr[j].id) {
+                            arrOut.push(sessions[i])
+                        }
+                    }
+                }
+
+                state.counterAllSelectPoints = 0
+                state.counterAllSelectStatus = arrOut.length
+
+                state.sessionsDbTest.payload = arrOut
+            }
+
+            if (state.counterPointsSelectStatus > 0 && state.counterStatusSelectStatus > 0) {
+                const filterArr = state.pointsDbTest.payload.filter(item => item.selectStatus)
+                const filterStatus = state.statusDbTest.payload.filter(item => item.selectStatus)
+
+                const arrOut = []
+                const arrWithStatus = []
+
+                for (let i = 0; i < sessions.length; i++) {
+                    for (let j = 0; j < filterArr.length; j++) {
+                        if (sessions[i].point_id === filterArr[j].id) {
+                            arrOut.push(sessions[i])
+                        }
+                    }
+                }
+
+                const arrWithPoints = arrOut.sort((a, b) => a.point_id - b.point_id)
+
+                for (let i = 0; i < arrWithPoints.length; i++) {
+                    for (let j = 0; j < filterStatus.length; j++) {
+                        if (arrWithPoints[i].state_id === filterStatus[j].id) {
+                            arrWithStatus.push(arrWithPoints[i])
+                        }
+                    }
+                }
+
+                state.counterAllSelectStatus = arrWithStatus.length
+                state.counterAllSelectPoints = arrWithPoints.length
+
+                state.sessionsDbTest.payload = arrWithStatus
+            }
         }
     },
 
@@ -268,8 +382,10 @@ export const {
     toggleDesktop,
     showWarning,
     pushPointsParam,
+    pushStatusParam,
     transformLocalPoints,
-    filterLocalPoints,
+    transformLocalStatus,
+    filterLocal,
 } = chargerSlice.actions
 
 export default chargerSlice.reducer

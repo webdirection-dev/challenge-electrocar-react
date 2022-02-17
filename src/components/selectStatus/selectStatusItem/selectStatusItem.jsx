@@ -1,12 +1,13 @@
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {pushPointsParam, transformLocalPoints, filterLocalPoints} from "../../../store/chargerSlice";
+import {pushStatusParam, transformLocalStatus, filterLocal} from "../../../store/chargerSlice";
 
 import iconSelected from '../../../icons/iconSelected.svg'
 import iconUnselected from '../../../icons/iconUnselected.svg'
 
 const SelectStatusItem = ({id, name, selectStatus}) => {
+    const status_idsParams = useSelector(state => state.chargerReducer.status_idsParams)
     const points_idsParams = useSelector(state => state.chargerReducer.points_idsParams)
     const dispatch = useDispatch()
 
@@ -15,19 +16,24 @@ const SelectStatusItem = ({id, name, selectStatus}) => {
     const handlerSelected = (event) => {
         event.preventDefault()
 
-        dispatch(pushPointsParam({points_ids: id}))
-        dispatch(transformLocalPoints({points_ids: id}))
-        dispatch(filterLocalPoints())
+        dispatch(pushStatusParam({status_ids: id}))
+        dispatch(transformLocalStatus({status_ids: id}))
+        dispatch(filterLocal())
     }
 
     // componentDidUpdate
     useEffect(() => {
         //Управление строкой URL
-        const ids = [...points_idsParams].sort((a, b) => a-b)
-        setSearchParams({points_ids: ids})
+        const idsPoints = [...points_idsParams].sort((a, b) => a-b)
+        const idsStatus = [...status_idsParams].sort((a, b) => a-b)
+
+        setSearchParams({
+            points_ids: idsPoints,
+            status_ids: idsStatus,
+        })
 
         // eslint-disable-next-line
-    }, [points_idsParams])
+    }, [status_idsParams, points_idsParams])
 
     let icon = !selectStatus ? iconUnselected : iconSelected
     let infoTxt = selectStatus ? 'Selected ' : ''

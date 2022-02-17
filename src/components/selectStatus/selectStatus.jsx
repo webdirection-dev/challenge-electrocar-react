@@ -5,14 +5,15 @@ import '../select/select.scss'
 
 
 const SelectStatus = () => {
-    const counterPointsSelectStatus = useSelector(state => state.chargerReducer.counterPointsSelectStatus)
+    const counterStatusSelectStatus = useSelector(state => state.chargerReducer.counterStatusSelectStatus)
+    const counterAllSelectStatus = useSelector(state => state.chargerReducer.counterAllSelectStatus)
 
     const [isToggleSelectList, setToggleSelectList] = useState(false)
 
     let classesToggleLocationList = isToggleSelectList ? 'select__actions select__actions-status' : 'hidden'
     let classesToggleBtns = !isToggleSelectList ? 'select__arrow' : 'select__arrow select__arrow-show'
 
-    let classesInfo = counterPointsSelectStatus > 0 ? '' : 'select__info'
+    let classesInfo = counterStatusSelectStatus > 0 ? '' : 'select__info'
 
     return(
         <div className='select__location'>
@@ -20,7 +21,7 @@ const SelectStatus = () => {
                 <div className="select__content">
                     <div className="select__name">Статус</div>
                     <div className="select__pipe">|</div>
-                    <div className={classesInfo}>Выбрано {counterPointsSelectStatus}</div>
+                    <div className={classesInfo}>Выбрано {counterAllSelectStatus}</div>
                 </div>
 
                 <i

@@ -8,6 +8,7 @@ import './select.scss'
 
 const Select = () => {
     const counterPointsSelectStatus = useSelector(state => state.chargerReducer.counterPointsSelectStatus)
+    const counterAllSelectPoints = useSelector(state => state.chargerReducer.counterAllSelectPoints)
 
     const [isToggleSelectList, setToggleSelectList] = useState(false)
     const [isFocus, setFocus] = useState(false)
@@ -44,7 +45,7 @@ const Select = () => {
                 <div className="select__content">
                     <div className="select__name">Локация</div>
                     <div className="select__pipe">|</div>
-                    <div className={classesInfo}>Выбрано {counterPointsSelectStatus}</div>
+                    <div className={classesInfo}>Выбрано {counterAllSelectPoints}</div>
                 </div>
 
                 <i
