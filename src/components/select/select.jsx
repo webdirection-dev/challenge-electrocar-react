@@ -11,7 +11,6 @@ import './select.scss'
 const Select = () => {
     const dispatch = useDispatch()
     const isInput = useSelector(state => state.chargerReducer.isInput)
-    console.log(isInput)
 
     const counterPointsSelectStatus = useSelector(state => state.chargerReducer.counterPointsSelectStatus)
     const counterAllSelectPoints = useSelector(state => state.chargerReducer.counterAllSelectPoints)
