@@ -22,7 +22,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage: storage,
-    blacklist: ['chargerReducer']
+    // blacklist: ['chargerReducer']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

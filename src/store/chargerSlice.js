@@ -85,18 +85,12 @@ export const addNewForm = createAsyncThunk(
     'chargerReducer/addNewForm',
     async function(user, {rejectWithValue}) {
         try {
-            const backCall = {
-                name: 'string',
-                phone: 'string',
-                callback_time: "number (unix time)"
-            }
-
             const response = await fetch( `${_path}form`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json;charset=utf-8'
                 },
-                body: JSON.stringify(backCall)
+                body: JSON.stringify(user)
             });
 
             if (!response.ok) {
@@ -112,12 +106,24 @@ const chargerSlice = createSlice({
     name: 'charger',
 
     initialState: {
+
+        users: [
+            {
+                id: 1,
+                name: 'Александр',
+                surname: 'Константиновский'
+            }
+        ],
+
+        isInput: '',
+
         sessionsData: {payload:[]},
         pointsData: {payload:[]},
         statusesData: {payload:[]},
 
         isToggleNavbar: true,
-        isToggleDesktop: true,
+        isToggleDesktop: false,
+        toggleModal: false,
 
         responseStatus: null,
         responseError: null,
@@ -138,7 +144,6 @@ const chargerSlice = createSlice({
         status_idsParams: [],
         counterStatusSelectStatus: 0,
         counterAllSelectStatus: 0,
-
         //тестовые данные
         sessionsDbTest: SessionsDb,
         pointsDbTest: transformLocalDb(PointsDb),
@@ -146,6 +151,10 @@ const chargerSlice = createSlice({
     },
 
     reducers: {
+        changeInput(state, action) {
+            state.isInput = action.payload.input
+        },
+
         toggleNavbar(state) {
             state.isToggleNavbar = !state.isToggleNavbar
         },
@@ -217,26 +226,6 @@ const chargerSlice = createSlice({
             state.counterStatusSelectStatus = count
             state.statusDbTest.payload = arr
         },
-
-        // filterLocalPoints(state) {
-        //     if (state.counterPointsSelectStatus > 0) {
-        //         const sessions = SessionsDb.payload
-        //
-        //         const filterArr = state.pointsDbTest.payload.filter(item => item.selectStatus)
-        //
-        //         const arrOut = []
-        //
-        //         for (let i = 0; i < sessions.length; i++) {
-        //             for (let j = 0; j < filterArr.length; j++) {
-        //                 if (sessions[i].point_id === filterArr[j].id) {
-        //                     arrOut.push(sessions[i])
-        //                 }
-        //             }
-        //         }
-        //
-        //         state.sessionsDbTest.payload = arrOut.sort((a, b) => a.point_id - b.point_id)
-        //     } else state.sessionsDbTest = SessionsDb
-        // },
 
         filterLocal(state) {
             let sessions = SessionsDb.payload
@@ -315,6 +304,10 @@ const chargerSlice = createSlice({
 
                 state.sessionsDbTest.payload = arrWithStatus
             }
+        },
+
+        toggleModalWindow(state) {
+            state.toggleModal = !state.toggleModal
         }
     },
 
@@ -378,6 +371,7 @@ const chargerSlice = createSlice({
 })
 
 export const {
+    changeInput,
     toggleNavbar,
     toggleDesktop,
     showWarning,
@@ -386,6 +380,7 @@ export const {
     transformLocalPoints,
     transformLocalStatus,
     filterLocal,
+    toggleModalWindow,
 } = chargerSlice.actions
 
 export default chargerSlice.reducer

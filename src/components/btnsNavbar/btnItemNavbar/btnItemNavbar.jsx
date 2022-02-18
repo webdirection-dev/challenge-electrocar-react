@@ -4,6 +4,7 @@ import {toggleNavbar, toggleDesktop, showWarning} from "../../../store/chargerSl
 import arrLeft from "../../../icons/iconArrLeft.svg";
 import arrRight from "../../../icons/iconArrRight.svg";
 import iconCharger from '../../../icons/iconCharger.svg'
+import iconAnalytics from '../../../icons/iconAnalytics.svg'
 
 const BtnItemNavbar = (props) => {
     const {
@@ -26,6 +27,7 @@ const BtnItemNavbar = (props) => {
     if (name === 'collapse' && !isToggleNavbar) icon = arrRight
     // Для кнопки Зарядные сессии
     if (name === 'charger') icon = iconCharger
+    if (name === 'analytics') icon = iconAnalytics
 
     // classes
     let classesIconCenter = 'navbar__btn'
@@ -39,7 +41,7 @@ const BtnItemNavbar = (props) => {
         classesNavbarImg = 'navbar__img'
     }
     // классы для кнопки Зарядные сессии
-    if (name === 'charger') {
+    if (name === 'charger' || name === 'analytics') {
         classesNavbarContent = 'navbar__content-charger'
         classesNavbarImg = 'navbar__charger'
     }

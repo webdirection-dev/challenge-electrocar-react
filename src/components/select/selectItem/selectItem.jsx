@@ -1,7 +1,7 @@
 import {useEffect} from "react";
 import {useSearchParams} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
-import {pushPointsParam, transformLocalPoints, filterLocal} from "../../../store/chargerSlice";
+import {pushPointsParam, transformLocalPoints, filterLocal, changeInput} from "../../../store/chargerSlice";
 
 import iconSelected from '../../../icons/iconSelected.svg'
 import iconUnselected from '../../../icons/iconUnselected.svg'
@@ -12,7 +12,6 @@ const SelectItem = ({id, name, selectStatus}) => {
     const dispatch = useDispatch()
 
     const [isSearchParams, setSearchParams] = useSearchParams()
-    // const pointsQuery = isSearchParams.get('points_ids') || ''
 
     const handlerSelected = (event) => {
         event.preventDefault()
@@ -20,6 +19,7 @@ const SelectItem = ({id, name, selectStatus}) => {
         dispatch(pushPointsParam({points_ids: id}))
         dispatch(transformLocalPoints({points_ids: id}))
         dispatch(filterLocal())
+        dispatch(changeInput({input: ''}))
     }
 
     // componentDidUpdate

@@ -13,3 +13,21 @@
 
 :focus {outline:none !important;}
 ::-moz-focus-inner {border:0;}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background: #FFFFFF;
+    border: 1px solid #E7F2FE;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+    background: #D2E5F9;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a5cbf3;
+}

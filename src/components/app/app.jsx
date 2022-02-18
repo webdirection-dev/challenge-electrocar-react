@@ -4,6 +4,7 @@ import {fetchSessions, fetchPoints, fetchStatuses} from "../../store/chargerSlic
 
 import Navbar from "../navbar";
 import Primary from "../Primary";
+import Modal from "../modal";
 import './app.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <div className="app">
             <Navbar />
             <Primary />
+            <Modal />
         </div>
     );
 }

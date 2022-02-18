@@ -21,6 +21,10 @@
         &-status {
             width: 362px;
         }
+        &-visible {
+            //border-bottom: 1px solid white;
+            border-radius: 3px 3px 0 0;
+        }
     }
     &__content {
         display: flex;
@@ -45,15 +49,17 @@
         }
     }
     &__actions {
-        position: absolute;
-        left: 0;
-        bottom: -251px;
+        //position: absolute;
+        //left: 0;
+        //bottom: -251px;
         width: 443px;
         height: 252px;
         background-color: $white;
         border: 1px solid #D2E5F9;
+        border-top: none;
         box-sizing: border-box;
         z-index: 1000;
+        overflow: hidden;
         &-status {
             width: 362px;
             height: auto;

@@ -1,4 +1,5 @@
 import {useSelector} from "react-redux";
+import {motion, AnimatePresence} from "framer-motion";
 import './navbar.scss'
 
 import BtnsListNavbar from "../btnsNavbar/btnsListNavbar";
@@ -9,21 +10,79 @@ const Navbar = () => {
     const isToggleNavbar = useSelector(state => state.chargerReducer.isToggleNavbar)
 
     let classesToggleNavbar = 'navbar'
-    if (!isToggleNavbar) {
-        classesToggleNavbar = classesToggleNavbar + ' navbar__hidden'
+
+    const navVariant = {
+        hiddenNav: {
+            width: '6.4rem',
+        },
+        visibleNav: {
+            width: '24.1rem',
+        },
     }
 
-  return(
-      <aside className={classesToggleNavbar}>
-          <div className="navbar__header">
-              <BtnsListNavbar isToggleNavbar={isToggleNavbar}/>
-          </div>
+    // const hideVariant = {
+    //     hiddenNav: {
+    //         width: '24.1rem',
+    //     },
+    //     visibleNav: {
+    //         width: '6.4rem',
+    //     },
+    // }
 
-          <div className="navbar__footer">
-              <BtnPhone />
-              <BtnBug />
-          </div>
-      </aside>
+  return(
+      <AnimatePresence>
+          {
+              isToggleNavbar && (
+                  <motion.aside
+                      className='navbar'
+                      initial={'hiddenNav'}
+                      animate={'visibleNav'}
+                      transition={{
+                          duration: 0.4,
+                          type: 'tween',
+                          ease: 'easeInOut'
+                      }}
+                      variants={navVariant}
+                      exit={'hiddenNav'}
+                  >
+                      <div className="navbar__header">
+                          <BtnsListNavbar isToggleNavbar={isToggleNavbar}/>
+                      </div>
+
+                      <div className="navbar__footer">
+                          <BtnPhone />
+                          <BtnBug />
+                      </div>
+                  </motion.aside>
+              )
+          }
+
+          {
+              !isToggleNavbar && (
+                  <motion.aside
+                      className='navbar navbar-hidden'
+                      // initial={'visibleNav'}
+                      // animate={'hiddenNav'}
+                      // transition={{
+                      //     duration: 0.4,
+                      //     type: 'tween',
+                      //     ease: 'easeInOut'
+                      // }}
+                      // variants={hideVariant}
+                      // exit={'hiddenNav'}
+                  >
+                      <div className="navbar__header">
+                          <BtnsListNavbar isToggleNavbar={isToggleNavbar}/>
+                      </div>
+
+                      <div className="navbar__footer">
+                          <BtnPhone />
+                          <BtnBug />
+                      </div>
+                  </motion.aside>
+              )
+          }
+      </AnimatePresence>
   )
 }
 

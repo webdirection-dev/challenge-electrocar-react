@@ -9,6 +9,10 @@ const DataNavbar = {
             name: 'charger',
             title: 'Зарядные сессии',
         },
+        {
+            name: 'analytics',
+            title: 'Аналитика',
+        },
     ]
 }
 

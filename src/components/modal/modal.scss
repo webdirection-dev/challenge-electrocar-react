@@ -1,0 +1,100 @@
+@import "../../sass";
+
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(4, 21, 40, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 10000;
+    &__content {
+        position: relative;
+        width: 320px;
+        height: 284px;
+        background-color: #FFFFFF;
+        padding: 40px;
+        overflow: hidden;
+    }
+    &__close {
+        position: absolute;
+        right: 17px;
+        top: 17px;
+        cursor: pointer;
+    }
+    &__title {
+        @include heading2();
+        text-align: center;
+    }
+    &__txt {
+        @include regular15();
+        text-align: center;
+        margin: 12px 0 16px;
+    }
+    &__subtitle {
+        @include regular13();
+        margin-bottom: 4px;
+    }
+    &__form {
+        @include regular13();
+        display: flex;
+        align-items: center;
+        height: 38px;
+        border: 1px solid #D2E5F9;
+        border-radius: 2px;
+        &-invalid {
+            border-color: #EB5757;
+        }
+    }
+    &__region {
+        color: #88B1DD;
+        margin: 0 5px 0 12px;
+    }
+    &__input {
+        border: none;
+        color: #88B1DD;
+    }
+    &__btn {
+        @include btn();
+        width: 320px;
+        height: 40px;
+        background: #0075F6;
+        border-radius: 3px;
+
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: #FFFFFF;
+
+        margin: 16px 0 12px;
+        &:hover {
+            background-color: #0A58E3;
+        }
+    }
+    &__footer {
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 120%;
+        color: #232323;
+        &-negative {
+            color: gray !important;
+        }
+    }
+    &__link {
+        @include link();
+        color: #0075F6;
+    }
+    &__agreement {
+        margin-right: 5px;
+        &-invalid {
+            outline: 2px solid red !important;
+        }
+    }
+}

@@ -1,0 +1,15 @@
+@import '../../../sass';
+
+.callback-btn {
+    @include btn();
+    position: absolute;
+    right: 32px;
+    bottom: 32px;
+    width: 64px;
+    height: 64px;
+    background: #32C38C;
+    border-radius: 50%;
+    &:hover {
+        background-color: #27B17C;
+    }
+}
