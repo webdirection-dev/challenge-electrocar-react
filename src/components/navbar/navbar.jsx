@@ -12,7 +12,6 @@ const Navbar = () => {
     const [isWidthWindow, setWidthWindow] = useState(null)
     const [isWidthNav, setWidthNav] = useState(241)
     const [isWidthNavHide, setWidthNavHide] = useState(64)
-    console.log(isWidthWindow)
 
     useEffect(() => {
         if (isWidthWindow !== null && isWidthWindow < 992) {
