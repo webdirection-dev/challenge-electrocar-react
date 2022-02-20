@@ -1,9 +1,12 @@
 @import "../../sass";
 
-.navbar {
+.aside {
     width: 24.1rem;
+}
+
+.navbar {
+    width: 100%;
     height: 100vh;
-    //height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -12,8 +15,8 @@
     flex-shrink: 0;
     overflow: hidden;
     &__hidden {
-        width: 6.4rem;
-        //overflow: hidden;
+        width: 6.4rem !important;
+        overflow: hidden;
     }
     &__btn {
         @include btn();
@@ -39,9 +42,17 @@
     }
 
     &__content {
-        padding-left: 24px;
+        padding-left: 13px;
+        @media ($desktop) {
+            padding-left: 24px;
+
+        }
         &-charger {
-            padding-left: 21px;
+            padding-left: 10px;
+            @media ($desktop) {
+                padding-left: 21px;
+
+            }
         }
     }
 
@@ -54,5 +65,11 @@
 
     &__tel {
         @include link()
+    }
+    &__mini {
+        display: none;
+        @media ($laptop) {
+            display: flex;
+        }
     }
 }

@@ -1,7 +1,10 @@
 @import "../../sass";
 
 .user {
-    display: flex;
+    display: none;
+    @media ($phone) {
+        display: flex;
+    }
     &__txt {
         @include regular15();
         margin: 0 11px;

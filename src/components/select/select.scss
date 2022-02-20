@@ -2,6 +2,10 @@
 
 .select {
     display: flex;
+    flex-direction: column;
+    @media ($desktop) {
+        flex-direction: row;
+    }
     &__location {
         position: relative;
     }
@@ -10,7 +14,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        width: 44.3rem;
+        width: 23.2rem;
         height: 4rem;
         background-color: $white;
         border: 1px solid #D2E5F9;
@@ -18,8 +22,22 @@
         border-radius: 3px;
         margin-right: 24px;
         padding: 0 16px;
+        @media ($phone) {
+            width: 36.2rem !important;
+        }
+        @media ($desktopMax) {
+            width: 44.3rem !important;
+        }
         &-status {
-            width: 362px;
+            width: 23.2rem;
+            margin-right: 0 !important;
+            margin-top: 10px;
+            @media ($phone) {
+                width: 36.2rem !important;
+            }
+            @media ($desktop) {
+                margin-top: 0;
+            }
         }
         &-visible {
             //border-bottom: 1px solid white;
@@ -52,7 +70,7 @@
         //position: absolute;
         //left: 0;
         //bottom: -251px;
-        width: 443px;
+        width: 232px;
         height: 252px;
         background-color: $white;
         border: 1px solid #D2E5F9;
@@ -60,22 +78,37 @@
         box-sizing: border-box;
         z-index: 1000;
         overflow: hidden;
-        &-status {
+        @media ($phone) {
             width: 362px;
+        }
+        @media ($desktop) {
+            width: 443px;
+        }
+        &-status {
+            width: 232px;
             height: auto;
             bottom: -145px;
+            @media ($phone) {
+                width: 362px;
+            }
         }
     }
     &__search {
         position: relative;
         display: flex;
         align-items: center;
-        width: 411px;
+        width: 200px;
         height: 40px;
         border: 1px solid #D2E5F9;
         box-sizing: border-box;
         border-radius: 2px;
         margin: 16px;
+        @media ($phone) {
+            width: 330px;
+        }
+        @media ($desktopMax) {
+            width: 411px;
+        }
         &-border-filled {
             border-color: #88B1DD;
         }
@@ -91,8 +124,14 @@
     }
     &__input {
         @include regular15();
-        width: 348px;
+        width: 150px;
         border: none;
+        @media ($phone) {
+            width: 250px;
+        }
+        @media ($desktopMax) {
+            width: 348px;
+        }
         &::placeholder {
             color: #88B1DD;
             border: none;

@@ -10,22 +10,14 @@ const Dashboard = () => {
     const {sessionsDbTest} = useSelector(state => state.chargerReducer)
 
     const {responseStatus, responseError, sessionsData} = useSelector(state => state.chargerReducer)
-    // console.log(sessionsData)
     const {responseStatusPoints, responseErrorPoints, pointsData} = useSelector(state => state.chargerReducer)
-    // console.log(pointsData)
-    // console.log(responseStatusPoints)
-    // console.log(responseErrorPoints)
-
     const {responseStatusStatuses, responseErrorStatuses, statusesData} = useSelector(state => state.chargerReducer)
-    // console.log(statusesData)
-    // console.log(responseStatusStatuses)
-    // console.log(responseErrorStatuses)
 
     return(
         <>
             {responseStatus === 'loading' && <h2>Загрузка...</h2>}
 
-            {(responseError && sessionsData.payload.length === 0) && <h2>Произошла ошибка: {responseError}</h2>}
+            {(responseError && sessionsData.payload.length === 0) && <h2 className='error'>Произошла ошибка: {responseError}</h2>}
 
             {/*Заглушка при ошибке Cross-Origin Request*/}
             {sessionsData.payload.length === 0 &&

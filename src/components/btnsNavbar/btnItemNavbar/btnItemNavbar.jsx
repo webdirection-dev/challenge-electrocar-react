@@ -22,15 +22,19 @@ const BtnItemNavbar = (props) => {
 
     // icons
     let icon = null
+    let mediaClass = ''
     // Для кнопки Свернуть
-    if (name === 'collapse' && isToggleNavbar) icon = arrLeft
+    if (name === 'collapse' && isToggleNavbar) {
+        icon = arrLeft
+        mediaClass = 'navbar__mini '
+    }
     if (name === 'collapse' && !isToggleNavbar) icon = arrRight
     // Для кнопки Зарядные сессии
     if (name === 'charger') icon = iconCharger
     if (name === 'analytics') icon = iconAnalytics
 
     // classes
-    let classesIconCenter = 'navbar__btn'
+    let classesIconCenter = `${mediaClass}navbar__btn`
     if (isToggleDesktop && name === 'charger') classesIconCenter = classesIconCenter + ' navbar__btn-lighter'
 
     let classesNavbarContent = ''

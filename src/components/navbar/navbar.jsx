@@ -1,3 +1,4 @@
+import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {motion, AnimatePresence} from "framer-motion";
 import './navbar.scss'
@@ -8,29 +9,36 @@ import BtnBug from "../btnsNavbar/btnBug";
 
 const Navbar = () => {
     const isToggleNavbar = useSelector(state => state.chargerReducer.isToggleNavbar)
+    const [isWidthWindow, setWidthWindow] = useState(null)
+    const [isWidthNav, setWidthNav] = useState(241)
+    const [isWidthNavHide, setWidthNavHide] = useState(64)
+    console.log(isWidthWindow)
 
-    let classesToggleNavbar = 'navbar'
+    useEffect(() => {
+        if (isWidthWindow !== null && isWidthWindow < 992) {
+            setWidthNav(46)
+            setWidthNavHide(46)
+        }
+    }, [isWidthWindow])
+
+    useEffect(() => {
+        const app = document.querySelector('.app')
+        setWidthWindow(window.getComputedStyle(app).width.replace(/\D/g, ''))
+    }, [])
 
     const navVariant = {
         hiddenNav: {
-            width: '6.4rem',
+            width: `${isWidthNavHide}px`,
+            // width: '6.4rem',
         },
         visibleNav: {
-            width: '24.1rem',
+            width: `${isWidthNav}px`,
+            // width: '24.1rem',
         },
     }
 
-    // const hideVariant = {
-    //     hiddenNav: {
-    //         width: '24.1rem',
-    //     },
-    //     visibleNav: {
-    //         width: '6.4rem',
-    //     },
-    // }
-
-  return(
-      <AnimatePresence>
+    return(
+      <AnimatePresence >
           {
               isToggleNavbar && (
                   <motion.aside

@@ -1,16 +1,30 @@
 @import '../../../sass';
 
 .charging {
-    padding: 0 32px 0 24px;
+    padding-left: 10px;
+    @media ($phone) {
+        padding-left: 24px;
+    }
+    @media ($desktopMax) {
+        padding: 0 32px 0 24px;
+    }
     &__title {
         @include heading1();
         margin: 40px 0 24px;
+        font-size: 24px;
+        @media ($tablet) {
+            font-size: 36px;
+        }
     }
     &__welcome {
         @include heading2();
         display: flex;
         justify-content: center;
         margin-top: 27rem;
+        font-size: 20px;
+        @media ($tablet) {
+            font-size: 24px;
+        }
     }
 }
 

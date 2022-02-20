@@ -4,7 +4,6 @@ import './userPanel.scss'
 
 const UserPanel = () => {
     // const users = useSelector(state => state.chargerReducer.users)
-
     // const user = users.filter(item => item.id === 1)[0]
 
     return(
