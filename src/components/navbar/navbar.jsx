@@ -28,10 +28,12 @@ const Navbar = () => {
     const navVariant = {
         hiddenNav: {
             width: `${isWidthNavHide}px`,
+            height: '100vh'
             // width: '6.4rem',
         },
         visibleNav: {
             width: `${isWidthNav}px`,
+            height: '100vh'
             // width: '24.1rem',
         },
     }
@@ -67,16 +69,16 @@ const Navbar = () => {
           {
               !isToggleNavbar && (
                   <motion.aside
-                      className='navbar navbar-hidden'
-                      // initial={'visibleNav'}
-                      // animate={'hiddenNav'}
-                      // transition={{
-                      //     duration: 0.4,
-                      //     type: 'tween',
-                      //     ease: 'easeInOut'
-                      // }}
-                      // variants={hideVariant}
-                      // exit={'hiddenNav'}
+                      initial={'visibleNav'}
+                      animate={'hiddenNav'}
+                      transition={{
+                          duration: 0.4,
+                          type: 'tween',
+                          ease: 'easeInOut'
+                      }}
+                      variants={navVariant}
+                      exit={'visibleNav'}
+                      className='navbar__hidden'
                   >
                       <div className="navbar__header">
                           <BtnsListNavbar isToggleNavbar={isToggleNavbar}/>
