@@ -26,6 +26,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -35,6 +36,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/components/navbar" />
       <recent name="$PROJECT_DIR$/src/components/selectStatus" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/components/app" />
@@ -76,7 +78,9 @@
       <workItem from="1645189594611" duration="18000" />
       <workItem from="1645375841398" duration="16159000" />
       <workItem from="1645398873587" duration="671000" />
-      <workItem from="1645400402133" duration="2844000" />
+      <workItem from="1645400402133" duration="3061000" />
+      <workItem from="1645405020651" duration="1143000" />
+      <workItem from="1645445669580" duration="19611000" />
     </task>
     <servers />
   </component>
