@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
-import iconPhone from "../../../../icons/iconPhone.svg";
+import iconBug from "../../../icons/iconBug.svg";
 
-const BtnPhone = () => {
+const BtnBug = () => {
     const isToggleNavbar = useSelector(state => state.chargerReducer.isToggleNavbar)
 
     // classes
@@ -16,17 +16,17 @@ const BtnPhone = () => {
     }
 
     return(
-        <a href="tel:+78007758187"
-           className={classesIconCenter}
+        <div
+            className={classesIconCenter}
         >
             <div className={classesNavbarContent}>
-                <img className={classesNavbarImg} src={iconPhone} alt="..."/>
+                <img className={classesNavbarImg} src={iconBug} alt="..."/>
                 {
-                    isToggleNavbar ? '8 800 775 81 87' : ''
+                    isToggleNavbar ? 'Сообщить о баге' : ''
                 }
             </div>
-        </a>
+        </div>
     )
 }
 
-export default BtnPhone
+export default BtnBug

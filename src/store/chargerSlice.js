@@ -149,36 +149,9 @@ const chargerSlice = createSlice({
         sessionsDbTest: SessionsDb,
         pointsDbTest: transformLocalDb(PointsDb),
         statusDbTest: transformLocalDb(StatesDb),
-
-        //Hovers Aside
-        isHoverToggleNav: false,
-        isHoverCharger: false,
-        isHoverAnalytics: false,
-        isHoverPhone: false,
-        isHoverBugs: false,
     },
 
     reducers: {
-        handlerHoverToggleNav(state) {
-            state.isHoverToggleNav = !state.isHoverToggleNav
-        },
-
-        handlerHoverCharger(state) {
-            state.isHoverCharger = !state.isHoverCharger
-        },
-
-        handlerHoverAnalytics(state) {
-            state.isHoverAnalytics = !state.isHoverAnalytics
-        },
-
-        handlerHoverPhone(state) {
-            state.isHoverPhone = !state.isHoverPhone
-        },
-
-        handlerHoverBugs(state) {
-            state.isHoverBugs = !state.isHoverBugs
-        },
-
         changeInput(state, action) {
             state.isInput = action.payload.input
         },
@@ -409,11 +382,6 @@ export const {
     transformLocalStatus,
     filterLocal,
     toggleModalWindow,
-    handlerHoverAnalytics,
-    handlerHoverCharger,
-    handlerHoverToggleNav,
-    handlerHoverPhone,
-    handlerHoverBugs,
 } = chargerSlice.actions
 
 export default chargerSlice.reducer
