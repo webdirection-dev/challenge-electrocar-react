@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useSelector, useDispatch} from "react-redux";
 import {motion, AnimatePresence} from "framer-motion";
 
@@ -7,8 +7,34 @@ import SelectList from "./selectList";
 
 import lens from '../../icons/lens.svg'
 import './select.scss'
+import {useSearchParams} from "react-router-dom";
 
 const Select = () => {
+    const [isSearchParams, setSearchParams] = useSearchParams()
+
+    const points_idsParams = useSelector(state => state.chargerReducer.points_idsParams)
+    const status_idsParams = useSelector(state => state.chargerReducer.status_idsParams)
+
+    useEffect(() => {
+        const idsPoints = [...points_idsParams].sort((a, b) => a-b)
+        const idsStatus = [...status_idsParams].sort((a, b) => a-b)
+
+        if (points_idsParams.length === 0 && status_idsParams.length === 0) {
+            setSearchParams({})
+        }
+
+        if (points_idsParams.length > 0 || status_idsParams > 0) {
+            setSearchParams({
+                points_ids: idsPoints,
+                status_ids: idsStatus,
+            })
+        }
+    }, [status_idsParams, points_idsParams, setSearchParams])
+
+
+
+
+
     const dispatch = useDispatch()
     const isInput = useSelector(state => state.chargerReducer.isInput)
 

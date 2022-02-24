@@ -1,6 +1,5 @@
-import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {motion, AnimatePresence} from "framer-motion";
+import {motion} from "framer-motion";
 import './navbar.scss'
 
 import BtnsListNavbar from "../btnsNavbar/btnsListNavbar";
@@ -9,90 +8,48 @@ import BtnBug from "../btnsNavbar/btnBug";
 
 const Navbar = () => {
     const isToggleNavbar = useSelector(state => state.chargerReducer.isToggleNavbar)
-    const [isWidthWindow, setWidthWindow] = useState(null)
-    const [isWidthNav, setWidthNav] = useState(241)
-    const [isWidthNavHide, setWidthNavHide] = useState(64)
-
-    useEffect(() => {
-        if (isWidthWindow !== null && isWidthWindow < 992) {
-            setWidthNav(46)
-            setWidthNavHide(46)
-        }
-    }, [isWidthWindow])
-
-    useEffect(() => {
-        const app = document.querySelector('.app')
-        setWidthWindow(window.getComputedStyle(app).width.replace(/\D/g, ''))
-    }, [])
-
-    const navVariant = {
-        hiddenNav: {
-            width: `${isWidthNavHide}px`,
-            height: '100vh'
-            // width: '6.4rem',
-        },
-        visibleNav: {
-            width: `${isWidthNav}px`,
-            height: '100vh'
-            // width: '24.1rem',
-        },
-    }
 
     return(
-      <AnimatePresence >
-          {
-              isToggleNavbar && (
-                  <motion.aside
-                      className='navbar'
-                      initial={'hiddenNav'}
-                      animate={'visibleNav'}
-                      transition={{
-                          duration: 0.4,
-                          type: 'tween',
-                          ease: 'easeInOut'
-                      }}
-                      variants={navVariant}
-                      exit={'hiddenNav'}
-                  >
-                      <div className="navbar__header">
-                          <BtnsListNavbar isToggleNavbar={isToggleNavbar}/>
-                      </div>
+        <>
+            <motion.aside
+                className='navbar'
 
-                      <div className="navbar__footer">
-                          <BtnPhone />
-                          <BtnBug />
-                      </div>
-                  </motion.aside>
-              )
-          }
+                initial={{
+                    width: isToggleNavbar ? '24.1rem' : '6.4rem',
+                }}
 
-          {
-              !isToggleNavbar && (
-                  <motion.aside
-                      initial={'visibleNav'}
-                      animate={'hiddenNav'}
-                      transition={{
-                          duration: 0.4,
-                          type: 'tween',
-                          ease: 'easeInOut'
-                      }}
-                      variants={navVariant}
-                      exit={'visibleNav'}
-                      className='navbar__hidden'
-                  >
-                      <div className="navbar__header">
-                          <BtnsListNavbar isToggleNavbar={isToggleNavbar}/>
-                      </div>
+                animate={{
+                    width: !isToggleNavbar ? '6.4rem' : '24.1rem',
+                }}
 
-                      <div className="navbar__footer">
-                          <BtnPhone />
-                          <BtnBug />
-                      </div>
-                  </motion.aside>
-              )
-          }
-      </AnimatePresence>
-  )
+                transition={{
+                    duration: 0.4,
+                    type: 'tween',
+                    ease: 'easeInOut'
+                }}
+            >
+                <div className="navbar__header">
+                    <BtnsListNavbar isToggleNavbar={isToggleNavbar}/>
+                </div>
+
+                <div className="navbar__footer">
+                    <BtnPhone />
+                    <BtnBug />
+                </div>
+            </motion.aside>
+
+            <aside className='navbar navbar__mini'>
+                <div className="navbar__header">
+                    <BtnsListNavbar isToggleNavbar={isToggleNavbar}/>
+                </div>
+
+                <div className="navbar__footer">
+                    <BtnPhone />
+                    <BtnBug />
+                </div>
+            </aside>
+        </>
+    )
 }
 
 export default Navbar

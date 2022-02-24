@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useDispatch} from "react-redux";
-import {fetchSessions, fetchPoints, fetchStatuses} from "../../store/chargerSlice";
+import {fetchSessions, fetchPoints, fetchStatuses, toggleAggregation} from "../../store/chargerSlice";
 
 import Navbar from "../navbar";
 import Primary from "../Primary";

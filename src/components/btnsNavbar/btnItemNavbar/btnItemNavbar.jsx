@@ -1,10 +1,12 @@
 import {useSelector, useDispatch} from "react-redux";
 import {toggleNavbar, toggleDesktop, showWarning} from "../../../store/chargerSlice";
+import {motion, AnimatePresence} from "framer-motion";
 
 import arrLeft from "../../../icons/iconArrLeft.svg";
 import arrRight from "../../../icons/iconArrRight.svg";
-import iconCharger from '../../../icons/iconCharger.svg'
-import iconAnalytics from '../../../icons/iconAnalytics.svg'
+import iconCharger from '../../../icons/iconChar2.svg'
+import iconAnalytics from '../../../icons/iconAn2.svg'
+import {useEffect, useState} from "react";
 
 const BtnItemNavbar = (props) => {
     const {
@@ -12,61 +14,58 @@ const BtnItemNavbar = (props) => {
         title,
     } = props
 
+    const [isIconsPath, setIsIconsPath] = useState('')
     const isToggleNavbar = useSelector(state => state.chargerReducer.isToggleNavbar)
-    const isToggleDesktop = useSelector(state => state.chargerReducer.isToggleDesktop)
-    const dispatch = useDispatch()
-
     const btnsHandler = name === 'collapse' ? toggleNavbar : name === 'charger' ? toggleDesktop : showWarning
+    const dispatch = useDispatch()
     const handler = () => dispatch(btnsHandler())
-    // const handlerToggleNavbar = () => dispatch(toggleNavbar())
 
-    // icons
-    let icon = null
-    let mediaClass = ''
-    // Для кнопки Свернуть
-    if (name === 'collapse' && isToggleNavbar) {
-        icon = arrLeft
-        mediaClass = 'navbar__mini '
-    }
-    if (name === 'collapse' && !isToggleNavbar) icon = arrRight
-    // Для кнопки Зарядные сессии
-    if (name === 'charger') icon = iconCharger
-    if (name === 'analytics') icon = iconAnalytics
+    useEffect(() => {
+        //icons
+        setTimeout(() => {
+            if (name === 'collapse' && !isToggleNavbar) setIsIconsPath(arrRight)
+        }, 300)
 
-    // classes
-    let classesIconCenter = `${mediaClass}navbar__btn`
-    if (isToggleDesktop && name === 'charger') classesIconCenter = classesIconCenter + ' navbar__btn-lighter'
-
-    let classesNavbarContent = ''
-    let classesNavbarImg = ''
-    // классы для кнопки Свернуть
-    if (name === 'collapse') {
-        classesNavbarContent = 'navbar__content'
-        classesNavbarImg = 'navbar__img'
-    }
-    // классы для кнопки Зарядные сессии
-    if (name === 'charger' || name === 'analytics') {
-        classesNavbarContent = 'navbar__content-charger'
-        classesNavbarImg = 'navbar__charger'
-    }
-
-    if (!isToggleNavbar) {
-        classesIconCenter = classesIconCenter + ' navbar__btn-center'
-        classesNavbarContent = ''
-        classesNavbarImg = ''
-    }
+        if (name === 'collapse' && isToggleNavbar) setIsIconsPath(arrLeft)
+        if (name === 'charger' && isToggleNavbar) setIsIconsPath(iconCharger)
+        if (name === 'analytics' && isToggleNavbar) setIsIconsPath(iconAnalytics)
+        // eslint-disable-next-line
+    }, [isToggleNavbar])
 
     return(
         <div
-            className={classesIconCenter}
+            className={name === 'collapse' ? 'navbar__btn navbar__btn-collapse' : 'navbar__btn'}
             onClick={handler}
-            // onClick={handlerToggleNavbar}
         >
-            <div className={classesNavbarContent}>
-                <img className={classesNavbarImg} src={icon} alt={name}/>
-                {
-                    isToggleNavbar ? `${title}` : ''
-                }
+            <div className='navbar__content'>
+                <img className='navbar__img' src={isIconsPath} alt={name}/>
+                <AnimatePresence>
+                    {
+                        isToggleNavbar && (
+                            <motion.span
+                                className='navbar__txt'
+
+                                initial={{
+                                    width: '24.1rem',
+                                }}
+
+                                animate={{
+                                    width: '0rem',
+                                }}
+
+                                exit={{
+                                    width: '6.4rem',
+                                }}
+
+                                transition={{
+                                    duration: 0.35,
+                                    type: 'tween',
+                                    ease: 'easeInOut'
+                                }}
+                            >{title}</motion.span>
+                        )
+                    }
+                </AnimatePresence>
             </div>
         </div>
     )

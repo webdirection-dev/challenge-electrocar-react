@@ -4,6 +4,7 @@ import CallBackBtn from "../callBack/callBackBtn";
 import './primary.scss'
 
 const Primary = () => {
+
     return(
         <div className="primary">
             <Header />

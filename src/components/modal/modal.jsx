@@ -75,18 +75,15 @@ const Modal = () => {
             x: 1000,
             opacity: 0,
             height: 0,
-            padding: 0,
+            // padding: 0,
         },
         visible: {
             x: 0,
             opacity: 1,
             height: 'auto',
-            padding: '40px',
         },
         end: {
-            // opacity: 0,
             height: 0,
-            padding: 0,
         }
     }
 

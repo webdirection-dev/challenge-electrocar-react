@@ -122,8 +122,8 @@ const chargerSlice = createSlice({
         statusesData: {payload:[]},
 
         isToggleNavbar: true,
-        // isToggleDesktop: true,
-        isToggleDesktop: false,
+        isToggleDesktop: true,
+        // isToggleDesktop: false,
         toggleModal: false,
 
         responseStatus: null,

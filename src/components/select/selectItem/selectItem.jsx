@@ -1,17 +1,11 @@
-import {useEffect} from "react";
-import {useSearchParams} from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux";
+import {useDispatch} from "react-redux";
 import {pushPointsParam, transformLocalPoints, filterLocal, changeInput} from "../../../store/chargerSlice";
 
 import iconSelected from '../../../icons/iconSelected.svg'
 import iconUnselected from '../../../icons/iconUnselected.svg'
 
 const SelectItem = ({id, name, selectStatus}) => {
-    const points_idsParams = useSelector(state => state.chargerReducer.points_idsParams)
-    const status_idsParams = useSelector(state => state.chargerReducer.status_idsParams)
     const dispatch = useDispatch()
-
-    const [isSearchParams, setSearchParams] = useSearchParams()
 
     const handlerSelected = (event) => {
         event.preventDefault()
@@ -21,20 +15,6 @@ const SelectItem = ({id, name, selectStatus}) => {
         dispatch(filterLocal())
         dispatch(changeInput({input: ''}))
     }
-
-    // componentDidUpdate
-    useEffect(() => {
-        //Управление строкой URL
-        const idsPoints = [...points_idsParams].sort((a, b) => a-b)
-        const idsStatus = [...status_idsParams].sort((a, b) => a-b)
-
-        setSearchParams({
-            points_ids: idsPoints,
-            status_ids: idsStatus,
-        })
-
-        // eslint-disable-next-line
-    }, [status_idsParams, points_idsParams])
 
     let icon = !selectStatus ? iconUnselected : iconSelected
     let infoTxt = selectStatus ? 'Selected ' : ''
