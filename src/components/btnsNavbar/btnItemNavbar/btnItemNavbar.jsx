@@ -24,11 +24,12 @@ const BtnItemNavbar = (props) => {
         //icons
         setTimeout(() => {
             if (name === 'collapse' && !isToggleNavbar) setIsIconsPath(arrRight)
+            // if (name === 'collapse' && isToggleNavbar) setIsIconsPath(arrLeft)
         }, 300)
 
-        if (name === 'collapse' && isToggleNavbar) setIsIconsPath(arrLeft)
-        if (name === 'charger' && isToggleNavbar) setIsIconsPath(iconCharger)
-        if (name === 'analytics' && isToggleNavbar) setIsIconsPath(iconAnalytics)
+        if (name === 'collapse') setIsIconsPath(arrLeft)
+        if (name === 'charger') setIsIconsPath(iconCharger)
+        if (name === 'analytics') setIsIconsPath(iconAnalytics)
         // eslint-disable-next-line
     }, [isToggleNavbar])
 
